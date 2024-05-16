@@ -20,6 +20,9 @@ public class Alumno {
         this.estado = estado;
     }
 
+    public Alumno() {
+    }
+
     public int getIdAlumno() {
         return idAlumno;
     }
@@ -68,5 +71,9 @@ public class Alumno {
         this.estado = estado;
     }
 
-   
+    @Override
+    public String toString() {
+        return "Alumno{" + "idAlumno=" + idAlumno + ", dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + ", fechaNacimiento=" + fechaNacimiento + ", estado=" + estado + '}';
+    }
+
 }
