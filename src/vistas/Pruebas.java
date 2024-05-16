@@ -13,7 +13,7 @@ public class Pruebas {
     public static void main(String[] args) {
 
         LocalDate fecha = LocalDate.now();
-        Alumno preferido = new Alumno(1, 123, "Federici", "Virginia", fecha, true);
+        Alumno preferido = new Alumno(1, 38056935, "Miguel", "Carmona", fecha, true);
         new Pruebas().conectar(preferido);
     }
 
