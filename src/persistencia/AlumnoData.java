@@ -2,7 +2,6 @@ package persistencia;
 
 import entidades.Alumno;
 import java.sql.*;
-import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 public class AlumnoData {
