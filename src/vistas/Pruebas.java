@@ -15,22 +15,24 @@ public class Pruebas {
 
     public static void main(String[] args) {
 
-        LocalDate fecha = LocalDate.now();
-        Alumno preferido = new Alumno(1, 178965, "Santiago", "Batista", fecha, true);
-        new Pruebas().conectar(preferido);
+        
+        new Pruebas().conectar();
     }
 
-    public void conectar(Alumno preferido) {
+    public void conectar() {
         conexion = new MiConexion();
         alumnoData = new AlumnoData(conexion);
-        System.out.println(alumnoData.buscarAlumno(123));
-        
-//        alumnoData.guardarAlumno(preferido);// Agregar nuevo alumno a Universisadg8
-//        alumnoData.buscarAlumno(11);// buscar alumno
-//        Alumno Alu = alumnoData.buscarAlumno(11);
-//        System.out.println("Alumno Nombre:" + Alu.getNombre());
-//        System.out.println(alumnoData.buscarAlumnoPorDni(12345678));
-//    //    alumnoData.restaurarAlumno(8);
+        LocalDate fecha= LocalDate.now();
+      
+        Alumno nuevo = new Alumno(15,369852,"Elba", "Surita", fecha, true);
+       alumnoData.guardarAlumno(nuevo);// Agregar nuevo alumno a Universisadg8
+       
+//       // buscar alumno
+//       Alumno Alu = alumnoData.buscarAlumno(11);
+//       System.out.println("Alumno Nombre:" + Alu.getNombre());
+//       //buscamos alumnos por el metododo dni
+//       System.out.println(alumnoData.buscarAlumnoPorDni(12345678));
+//       //modificamos el alumno
 //        Alumno alumno = new Alumno();
 //        alumno.setIdAlumno(10); // ID del alumno a modificar
 //        alumno.setDni(12345678); // Nuevo DNI
@@ -38,10 +40,18 @@ public class Pruebas {
 //        alumno.setNombre("pizza"); // Nuevo nombre
 //        alumno.setFechaNacimiento(LocalDate.of(1990, 5, 15));
 //        alumnoData.modificarAlumno(alumno);
-//        System.out.println(alumnoData.buscarAlumnoPorDni(12345678));
-//    //    alumnoData.eliminarAlumno(8);
-         
-        
+//        //eliminamos el alumno por el id
+//        alumnoData.eliminarAlumno(8);
+//        
+//        //listamos todos los alumnos    
+//        alumnos = alumnoData.listarAlumnos();
+//          System.out.println("La lista de alumnos es ");
+//         for(Alumno alu:alumnos){
+//             System.out.println(alu);
+//             
+//         }
+//        //agregamos al alumno que hubieramos borrado
+//        alumnoData.restaurarAlumno(0);
 }
     
 }
