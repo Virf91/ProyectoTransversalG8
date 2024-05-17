@@ -15,7 +15,7 @@ public class Conexion {
     private static Connection connection = null;
     
 // Metodo constructor
-    public Conexion() {}
+    private Conexion() {}
 
     public static Connection getConexion() {
         if (connection == null) {
