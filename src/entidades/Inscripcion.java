@@ -4,6 +4,9 @@
  */
 package entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author virfe
@@ -19,6 +22,15 @@ public class Inscripcion {
         this.nota = nota;
         this.idAlumno = idAlumno;
         this.idMateria = idMateria;
+    }
+
+    public Inscripcion(int nota, int idAlumno, int idMateria) {
+        this.nota = nota;
+        this.idAlumno = idAlumno;
+        this.idMateria = idMateria;
+    }
+
+    public Inscripcion() {
     }
 
     public int getIdInscripto() {

@@ -10,7 +10,7 @@ public class AlumnoData {
 
     private Connection con = null;
 
-    public AlumnoData(MiConexion connection) {
+    public AlumnoData(Conexion connection) {
         this.con = connection.getConexion();
     }
 

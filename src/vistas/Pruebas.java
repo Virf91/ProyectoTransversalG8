@@ -1,37 +1,40 @@
 package vistas;
 
 import entidades.Alumno;
+import entidades.Materia;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import persistencia.AlumnoData;
-import persistencia.MiConexion;
+import persistencia.Conexion;
+import persistencia.MateriaData;
 
 public class Pruebas {
 
     private AlumnoData alumnoData;
-    private MiConexion conexion;
+    private Conexion conexion;
     private List<Alumno> alumnos = new ArrayList<>();
+    private MateriaData materiaData;
 
     public static void main(String[] args) {
-
-        
         new Pruebas().conectar();
     }
 
     public void conectar() {
-        conexion = new MiConexion();
-        alumnoData = new AlumnoData(conexion);
-        LocalDate fecha= LocalDate.now();
-      
-        Alumno nuevo = new Alumno(15,369852,"Elba", "Surita", fecha, true);
-       alumnoData.guardarAlumno(nuevo);// Agregar nuevo alumno a Universisadg8
-       
+        conexion = new Conexion();
+//        alumnoData = new AlumnoData(conexion);
+//        LocalDate fecha = LocalDate.now();
+//
+//        Alumno nuevo = new Alumno(15, 369852, "Elba", "Surita", fecha, true);
+//        alumnoData.guardarAlumno(nuevo);// Agregar nuevo alumno a Universisadg8
+
 //       // buscar alumno
 //       Alumno Alu = alumnoData.buscarAlumno(11);
 //       System.out.println("Alumno Nombre:" + Alu.getNombre());
 //       //buscamos alumnos por el metododo dni
 //       System.out.println(alumnoData.buscarAlumnoPorDni(12345678));
+
+
 //       //modificamos el alumno
 //        Alumno alumno = new Alumno();
 //        alumno.setIdAlumno(10); // ID del alumno a modificar
@@ -52,6 +55,15 @@ public class Pruebas {
 //         }
 //        //agregamos al alumno que hubieramos borrado
 //        alumnoData.restaurarAlumno(0);
-}
-    
+//===========================================================
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//                  agregar materia
+//
+        materiaData = new MateriaData(conexion);
+        Materia mat = new Materia ( "Geografia", 1, true);
+        materiaData.guardarMateria(mat);
+
+    }
+
 }
