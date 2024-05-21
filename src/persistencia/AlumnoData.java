@@ -10,8 +10,8 @@ public class AlumnoData {
 
     private Connection con = null;
 
-    public AlumnoData(Conexion connection) {
-        this.con = connection.getConexion();
+    public AlumnoData() {
+        con = Conexion.getConexion();
     }
 
     public void guardarAlumno(Alumno a) {
@@ -29,7 +29,7 @@ public class AlumnoData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 // Obtener el id generado (opcional)
-                a.setIdAlumno(rs.getInt(1));
+                a.setIdAlumno(rs.getInt(1));// el (1) es la columna 1 donde esta el id, originalmente se llama insert_id, ese campo
                 JOptionPane.showMessageDialog(null, "Alumno añadido con éxito.");
             }
             ps.close();
@@ -40,6 +40,7 @@ public class AlumnoData {
     }
 
     public Alumno buscarAlumno(int id) {
+       
         Alumno alumno = null;
         String sql = "SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE idAlumno = ? AND estado = 1";
         PreparedStatement ps = null;
@@ -47,7 +48,7 @@ public class AlumnoData {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();//consulta
 
             if (rs.next()) {
                 alumno = new Alumno();
@@ -64,6 +65,7 @@ public class AlumnoData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno: " + ex.getMessage());
         }
+      
         return alumno;
     }
 
@@ -127,66 +129,69 @@ public class AlumnoData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
         }
-        
+
         return alumnos;
     }
+
     public void modificarAlumno(Alumno alumno) {
-    String sql = "UPDATE alumno SET dni = ?, apellido = ?, nombre = ?, fechaNacimiento = ? WHERE idAlumno = ?";
-    PreparedStatement ps = null;
+        String sql = "UPDATE alumno SET dni = ?, apellido = ?, nombre = ?, fechaNacimiento = ? WHERE idAlumno = ?";
 
-    try {
-        ps = con.prepareStatement(sql);
-        ps.setInt(1, alumno.getDni());
-        ps.setString(2, alumno.getApellido());
-        ps.setString(3, alumno.getNombre());
-        ps.setDate(4, Date.valueOf(alumno.getFechaNacimiento()));
-        ps.setInt(5, alumno.getIdAlumno());
-        int exito = ps.executeUpdate();
-        if (exito == 1) {
-            JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
-        } else {
-            JOptionPane.showMessageDialog(null, "El alumno no existe");
-        }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
-    } finally {
+        PreparedStatement ps = null;
+
         try {
-            if (ps != null) {
-                ps.close();
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al cerrar recursos: " + e.getMessage());
-        }
-    }
-}
-    public void eliminarAlumno(int id) {
-    try {
-        String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ?";
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, id);
-        int fila = ps.executeUpdate();
-        if (fila == 1) {
-            JOptionPane.showMessageDialog(null, "Se eliminó el alumno.");
-        }
-        ps.close();
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno: " + e.getMessage());
-    }
-}
-        public void restaurarAlumno(int id) {
-    try {
-        String sql = "UPDATE alumno SET estado = 1 WHERE idAlumno = ?";
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, id);
-        int fila = ps.executeUpdate();
-        if (fila == 1) {
-            JOptionPane.showMessageDialog(null, "El alumno fue restaurado correctamente");
-        }
-        ps.close();
-    } catch (SQLException e) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno: " + e.getMessage());
-    }
-}
-}
-    
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, alumno.getDni());
+            ps.setString(2, alumno.getApellido());
+            ps.setString(3, alumno.getNombre());
+            ps.setDate(4, Date.valueOf(alumno.getFechaNacimiento()));
+            ps.setInt(5, alumno.getIdAlumno());
 
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "El alumno no existe");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al cerrar recursos: " + e.getMessage());
+            }
+        }
+    }
+
+    public void eliminarAlumno(int id) {
+        try {
+            String sql = "UPDATE alumno SET estado = 0 WHERE idAlumno = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "Se eliminó el alumno.");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno: " + e.getMessage());
+        }
+    }
+
+    public void restaurarAlumno(int id) {
+        try {
+            String sql = "UPDATE alumno SET estado = 1 WHERE idAlumno = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "El alumno fue restaurado correctamente");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno: " + e.getMessage());
+        }
+    }
+}

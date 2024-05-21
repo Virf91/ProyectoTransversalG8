@@ -13,105 +13,97 @@ public class Pruebas {
 
     private AlumnoData alumnoData;
     private Conexion conexion;
-    private List<Alumno> alumnos = new ArrayList<>();
+    private List<Alumno> alumnos;
     private List<Materia> materias = new ArrayList<>();
     private MateriaData materiaData;
 
     public static void main(String[] args) {
-        new Pruebas().conectar();
-    }
 
-    public void conectar() {
-        Conexion.getConexion();// se agrego esta parte porque se modifico el metodo 
-                                //conexion no hace falta hace un new solo usa una conexion
-//       conexion = new Conexion();
-//        alumnoData = new AlumnoData(conexion);
+        Conexion.getConexion(); // se agrego esta parte porque se modifico el metodo 
+        // conexion no hace falta hace un new solo usa una conexion
+        AlumnoData alu = new AlumnoData();
+        Alumno alumno = new Alumno();
+        List<Alumno> alumnos = new ArrayList<>();
+
+        MateriaData mat = new MateriaData();
+        Materia materia = new Materia();
+        List<Materia> materias = new ArrayList<>();
+//*****************************************************************
+//                      CARGAR/GUARDAR ALUMNO 
+////***************************************************************
 //        LocalDate fecha = LocalDate.now();
-//
-//        Alumno nuevo = new Alumno(15, 369852, "Elba", "Surita", fecha, true);
-//        alumnoData.guardarAlumno(nuevo);// Agregar nuevo alumno a Universisadg8
-
+//        Alumno nuevo = new Alumno(31, 1249852, "Alberto", "Olmedo", fecha, true);
+//        alu.guardarAlumno(nuevo);// Agregar nuevo alumno a Universisadg8
 
 //*****************************************************************
 //                      BUSCAR ALUMNO POR ID
-//*****************************************************************
-//       Alumno Alu = alumnoData.buscarAlumno(11);
-//       System.out.println("Alumno Nombre:" + Alu.getNombre());
-
-//*****************************************************************
+////***************************************************************
+// 
+//       System.out.println(alu.buscarAlumno(11));
+////*****************************************************************
 //                     BUSCAR ALUMNO POR DNI
-//*****************************************************************
-//       System.out.println(alumnoData.buscarAlumnoPorDni(12345678));
-
-
+////*****************************************************************
+//        
+//        System.out.println(alu.buscarAlumnoPorDni(12345678));
+////
 //*****************************************************************
 //                     MODIFICAMOS ALUMNO
-//*****************************************************************
-//        Alumno alumno = new Alumno();
-//        alumno.setIdAlumno(10); // ID del alumno a modificar
-//        alumno.setDni(12345678); // Nuevo DNI
-//        alumno.setApellido("Quito"); // Nuevo apellido
-//        alumno.setNombre("pizza"); // Nuevo nombre
-//        alumno.setFechaNacimiento(LocalDate.of(1990, 5, 15));
-//        alumnoData.modificarAlumno(alumno);
+//////*************************************************************
+//        alumno.setIdAlumno(20); // ID del alumno a modificar
+//        alumno.setDni(1234); // Nuevo DNI
+//        alumno.setApellido("John"); // Nuevo apellido
+//        alumno.setNombre("Doe"); // Nuevo nombre
+//        alumno.setFechaNacimiento(LocalDate.of(1999, 5, 15));
+//        alu.modificarAlumno(alumno);
 
-
-//*****************************************************************
+////*****************************************************************
 //                  ELIMINAMOS ALUMNO POR EL ID
 //*****************************************************************
-//        alumnoData.eliminarAlumno(8);
+
+//        alu.eliminarAlumno(8);
 
 //*****************************************************************    
 //                  LISTAMOS TODOS LOS ALUMNOS    
 //*****************************************************************
-//        alumnos = alumnoData.listarAlumnos();
-//          System.out.println("La lista de alumnos es ");
-//         for(Alumno alu:alumnos){
-//             System.out.println(alu);
-//         }
-//        //agregamos al alumno que hubieramos borrado
-//        alumnoData.restaurarAlumno(0);
-
-
+//       
+//          System.out.println("La lista de alumnos es: ");
+//          System.out.println( alu.listarAlumnos());
+//
+//     
+////       
 //*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //*****************************************************************
 //                  AGREGAR MATERIA
-//*****************************************************************
-//
-//        materiaData = new MateriaData(conexion);
-//        Materia mat = new Materia ( "Programacion 1", 2024, true);
-//        materiaData.guardarMateria(mat);
-
+////*****************************************************************
+//        LocalDate fecha = LocalDate.now();
+//        materia= new Materia(25, "Progrmacion AI", 2024, true);
+//        mat.guardarMateria(materia);// Agregar nuevo alumno a Universisadg8
 //*****************************************************************
 //                  MODIFICAR MATERIA
 //*****************************************************************
-        Materia m = new Materia();
 //
-//        m.setNombre("Geografia");
-//        m.setAnio(2020);
-//        m.setEstado(true);
-//        System.out.println(m);
-//        materiaData.modificarMateria(m);
-// falta agustar algunas cosas no funciona todavia
-
-
+//        materia.setNombre("Geografia con AI");
+//        materia.setAnio(2024);
+//        materia.setEstado(true);
+//        materia.setIdMateria(1);
+//        mat.modificarMateria(materia);
+//     
 //*****************************************************************
 //                  ELIMINAR  MATERIA
 //*****************************************************************
-//    materiaData.eliminarMateria(1);
-//falt probar metodo
+//        mat.eliminarMateria(1);
 
 //*****************************************************************    
 //                  LISTAMOS TODAS LAS MATERIAS    
-//*****************************************************************
-        materias = materiaData.listarMaterias();
-          System.out.println("La lista de materias es ");
-         for(Materia mat:materias){
-             System.out.println(mat);
-         }
-     
-        
-
-    }
-
+////*****************************************************************
+//          System.out.println("La lista de Materias es: ");
+//          System.out.println( mat.listarMaterias());
+////
+/////*****************************************************************
+//                     BUSCAR MATERIA POR id
+////*****************************************************************
+//        
+        System.out.println(mat.buscarMateria(4));
+////  
+}
 }
