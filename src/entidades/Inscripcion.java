@@ -12,6 +12,7 @@ import java.util.List;
  * @author virfe
  */
 public class Inscripcion {
+
     private int idInscripto;
     private int nota;
     private int idAlumno;
@@ -64,5 +65,5 @@ public class Inscripcion {
     public void setIdMateria(int idMateria) {
         this.idMateria = idMateria;
     }
-    
+
 }
