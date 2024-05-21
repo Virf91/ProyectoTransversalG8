@@ -18,11 +18,11 @@ public class Conexion {
     private Conexion() {}
 
     public static Connection getConexion() {
-        if (connection == null) {
+        if (connection == null) { // si es null significa que es la primera conexion
             try {
-                Class.forName("org.mariadb.jdbc.Driver");
+                Class.forName("org.mariadb.jdbc.Driver"); //se cargan los driver de conexión al gestor de base de datos
                 //Setup the connection with the DB
-                connection = DriverManager.getConnection(bd, usuario, password);
+                connection = DriverManager.getConnection(bd, usuario, password);//se establece la conexión a la base de datos invocando al método getConnection() 
             } catch (ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Error al conectarse al cargar los drivers");
             } catch (SQLException ex) {

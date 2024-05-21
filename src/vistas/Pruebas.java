@@ -14,6 +14,7 @@ public class Pruebas {
     private AlumnoData alumnoData;
     private Conexion conexion;
     private List<Alumno> alumnos = new ArrayList<>();
+    private List<Materia> materias = new ArrayList<>();
     private MateriaData materiaData;
 
     public static void main(String[] args) {
@@ -76,21 +77,40 @@ public class Pruebas {
 //*****************************************************************
 //                  AGREGAR MATERIA
 //*****************************************************************
-
+//
 //        materiaData = new MateriaData(conexion);
-//        Materia mat = new Materia ( "EDA", 2024, true);
+//        Materia mat = new Materia ( "Programacion 1", 2024, true);
 //        materiaData.guardarMateria(mat);
 
 //*****************************************************************
 //                  MODIFICAR MATERIA
 //*****************************************************************
-//        Materia m = new Materia();
-//        m.setIdMateria(1);
+        Materia m = new Materia();
+//
 //        m.setNombre("Geografia");
-//        m.setAnio(2024);
+//        m.setAnio(2020);
 //        m.setEstado(true);
+//        System.out.println(m);
 //        materiaData.modificarMateria(m);
 // falta agustar algunas cosas no funciona todavia
+
+
+//*****************************************************************
+//                  ELIMINAR  MATERIA
+//*****************************************************************
+//    materiaData.eliminarMateria(1);
+//falt probar metodo
+
+//*****************************************************************    
+//                  LISTAMOS TODAS LAS MATERIAS    
+//*****************************************************************
+        materias = materiaData.listarMaterias();
+          System.out.println("La lista de materias es ");
+         for(Materia mat:materias){
+             System.out.println(mat);
+         }
+     
+        
 
     }
 

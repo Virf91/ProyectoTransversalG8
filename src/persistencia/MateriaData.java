@@ -11,6 +11,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,16 +52,16 @@ public class MateriaData {
     }
 
     public void modificarMateria(Materia m) {
-        String sql = "UPDATE materia SET idMateria = ?, nombre = ?, anio = ?, estado = ? WHERE idMateria = ?";
+        String sql = "UPDATE materia SET nombre = ?, anio = ?, estado = ? WHERE idMateria = ?";
         PreparedStatement ps = null;
                     //UPDATE `materia` SET `idMateria`='',`nombre`='',`anio`='',`estado`='' WHERE 1
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1,m.getIdMateria());
-            ps.setString(2, m.getNombre());
-            ps.setInt(3, m.getAnio());
-            ps.setBoolean(4, m.isEstado());
-            ps.setInt(5, m.getIdMateria());
+
+            ps.setString(1, m.getNombre());
+            ps.setInt(2, m.getAnio());
+            ps.setBoolean(3, m.isEstado());
+            ps.setInt(4, m.getIdMateria());
             
             int exito = ps.executeUpdate();
             if (exito == 1) {
@@ -79,5 +81,39 @@ public class MateriaData {
             }
         }
     }
-
+    public void eliminarMateria(int id){
+    try {
+        String sql = "UPDATE materia SET estado = 0 WHERE idMateria = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        int fila = ps.executeUpdate();
+        if (fila == 1) {
+            JOptionPane.showMessageDialog(null, "Se eliminó la Materia.");
+        }
+        ps.close();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia: " + e.getMessage());
+    }
+    }
+public List<Materia> listarMaterias() {
+        List<Materia> materias = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM materia WHERE estado = 1";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Materia mat = new Materia();
+                mat.setIdMateria(rs.getInt("idMateria"));
+                mat.setNombre(rs.getString("nombre"));
+                mat.setAnio(rs.getInt("anio"));
+                mat.setEstado(rs.getBoolean("estado"));
+                materias.add(mat);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
+        }
+        
+        return materias;
+    }
 }
