@@ -11,10 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author carba
- */
+
 public class MateriaData {
 
     private Connection con = null;

@@ -1,52 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package persistencia;
 
 import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
-import java.sql.Connection;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author SANTIAGO
- */
 public class InscripcionData {
 
     private Connection con = null;
     private MateriaData matData;
     private AlumnoData aluData;
     private Inscripcion i = new Inscripcion();
-    private Materia m = new Materia();
-
-    public InscripcionData(Conexion connection) {
-        this.con = connection.getConexion();
-    }
+    private Materia M = new Materia();
 
     public InscripcionData() {
+        con = Conexion.getConexion();
     }
-    
+
     public void guardarInscripcion(Inscripcion i) {
-        String sql = "INSERT INTO inscripcion(idInscripto, nota, idAlumno, idMateria) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO inscripcion(idAlumno, idMateria, nota) VALUES (?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, i.getIdInscripto());
-            ps.setInt(2, i.getNota());
-            ps.setInt(3, i.getIdAlumno());
-            ps.setInt(4, i.getIdMateria());
+            ps.setInt(1, i.getIdAlumno());
+            ps.setInt(2, i.getIdMateria());
+            ps.setDouble(3, i.getNota());
 
             ps.executeUpdate();
-
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 // Obtener el id generado (opcional)
@@ -60,17 +42,19 @@ public class InscripcionData {
         }
     }
 
-    public void actualizarNota(int idAlumno, int idMateria, double nota) {
+    public void actualizarNota( Inscripcion inscripcion) {
 
-        String sql = "UPDATE inscripcion SET nota = ?  WHERE idAlumno = ? AND idMateria = ?";
+        String sql = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
         PreparedStatement ps = null;
 
         try {
-            ps = con.prepareStatement(sql);
 
-            ps.setDouble(1, i.getNota());
+            ps = con.prepareStatement(sql);
+                    
+            ps.setDouble(1, i.getNota());        
             ps.setInt(2, i.getIdAlumno());
             ps.setInt(3, i.getIdMateria());
+           
 
             int exito = ps.executeUpdate();
             if (exito == 1) {
@@ -127,7 +111,7 @@ public class InscripcionData {
 
         return inscripciones;
     }
-    
+
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int idAlumno) {
         List<Inscripcion> inscripciones = new ArrayList<>();
         try {
@@ -149,14 +133,14 @@ public class InscripcionData {
 
         return inscripciones;
     }
-    
+
     public List<Materia> obtenerMateriasCursadas(int idAlumno) {
         List<Materia> matInscripto = new ArrayList<>();
         //List<Integer> idMaterias= new ArrayList<>();
         try {
             String sql = "SELECT inscripcion.idMateria, nombre, anio FROM inscripcion,"
                     + " materia WHERE incripcion.idMateria = materia.idMateria AND inscripcion.idAlumno = ?";
-            
+
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ResultSet rs = ps.executeQuery();
@@ -183,14 +167,14 @@ public class InscripcionData {
 
         return matInscripto;
     }
-    
+
     public List<Materia> obtenerMateriasNoCursadas(int idAlumno) {
         List<Materia> matNoInscripto = new ArrayList<>();
 //        List<Integer> idMaterias= new ArrayList<>();
         try {
             String sql = "SELECT inscripcion.idMateria, nombre, anio FROM inscripcion,"
                     + " materia WHERE incripcion.idMateria = materia.idMateria AND inscripcion.idAlumno != ?";
-            
+
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ResultSet rs = ps.executeQuery();
@@ -215,13 +199,13 @@ public class InscripcionData {
         }
         return matNoInscripto;
     }
-    
+
     public List<Alumno> obtenerAlumnoPorMateria(int idMateria) {
         List<Alumno> alumnosXmateria = new ArrayList<>();
         try {
             String sql = "SELECT inscripcion.idAlumno, nombre, apellido FROM inscripcion,"
                     + " alumno WHERE incripcion.idAlumno = alumno.idAlumno AND inscripcion.idMateria = ?";
-            
+
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idMateria);
             ResultSet rs = ps.executeQuery();
@@ -232,7 +216,7 @@ public class InscripcionData {
                 al.setApellido(rs.getString("apellido"));
                 alumnosXmateria.add(al);
             }
-            
+
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inscripciones: " + ex.getMessage());

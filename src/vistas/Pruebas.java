@@ -6,6 +6,7 @@ import entidades.Materia;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import persistencia.AlumnoData;
 import persistencia.Conexion;
 import persistencia.InscripcionData;
@@ -36,108 +37,149 @@ public class Pruebas {
         Inscripcion i = new Inscripcion();
         List<Inscripcion> inscripciones = new ArrayList<>();
 
-//*****************************************************************
-//                      CARGAR/GUARDAR ALUMNO 
-////***************************************************************
-        LocalDate fecha = LocalDate.now();
-        Alumno nuevo = new Alumno(31, 1249852, "Alberto", "Olmedo", fecha, true);
-        alu.guardarAlumno(nuevo);// Agregar nuevo alumno a Universisadg8
-//*****************************************************************
-//                      BUSCAR ALUMNO POR ID
-////***************************************************************
-// 
-        System.out.println(alu.buscarAlumno(11));
 ////*****************************************************************
-//                     BUSCAR ALUMNO POR DNI
+
+////                      CARGAR/GUARDAR ALUMNO 
+//////***************************************************************
+//        LocalDate fecha = LocalDate.now();
+//        Alumno nuevo = new Alumno(31, 1249852, "Alberto", "Olmedo", fecha, true);
+//        alu.guardarAlumno(nuevo);// Agregar nuevo alumno a Universisadg8
 ////*****************************************************************
-//        
-        System.out.println(alu.buscarAlumnoPorDni(12345678));
-////
-//*****************************************************************
-//                     MODIFICAMOS ALUMNO
-//////*************************************************************
-        alumno.setIdAlumno(20); // ID del alumno a modificar
-        alumno.setDni(1234); // Nuevo DNI
-        alumno.setApellido("John"); // Nuevo apellido
-        alumno.setNombre("Doe"); // Nuevo nombre
-        alumno.setFechaNacimiento(LocalDate.of(1999, 5, 15));
-        alu.modificarAlumno(alumno);
+
+
+////                      BUSCAR ALUMNO POR ID
+//////***************************************************************
+//// 
+//        System.out.println(alu.buscarAlumno(11));
+//////****************************************************************
+
+
+////                     BUSCAR ALUMNO POR DNI
+//////****************************************************************
+////        
+//        System.out.println(alu.buscarAlumnoPorDni(12345678));
+//////
 ////*****************************************************************
-//                  ELIMINAMOS ALUMNO POR EL ID
-//*****************************************************************
-        alu.eliminarAlumno(8);
-//*****************************************************************    
-//                  LISTAMOS TODOS LOS ALUMNOS    
-//*****************************************************************
-//       
-        System.out.println("La lista de alumnos es: ");
-        System.out.println(alu.listarAlumnos());
+
+
+////                     MODIFICAMOS ALUMNO
+////////*************************************************************
+//        alumno.setIdAlumno(20); // ID del alumno a modificar
+//        alumno.setDni(1234); // Nuevo DNI
+//        alumno.setApellido("John"); // Nuevo apellido
+//        alumno.setNombre("Doe"); // Nuevo nombre
+//        alumno.setFechaNacimiento(LocalDate.of(1999, 5, 15));
+//        alu.modificarAlumno(alumno);
+//////***************************************************************
+
+
+////                  ELIMINAMOS ALUMNO POR EL ID
+////*****************************************************************
+//        alu.eliminarAlumno(8);
+////*****************************************************************  
+
+
+////                  LISTAMOS TODOS LOS ALUMNOS    
+////*****************************************************************
+////       
+//        System.out.println("La lista de alumnos es: ");
+//        System.out.println(alu.listarAlumnos());
 //
 //     
-////       
-//*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//*****************************************************************
+
+//*******************************************************************
 //                  AGREGAR MATERIA
 ////*****************************************************************
-        materia = new Materia(25, "Progrmacion AI", 2024, true);
-        mat.guardarMateria(materia);// Agregar nuevo alumno a Universisadg8
-//*****************************************************************
-//                  MODIFICAR MATERIA
-//*****************************************************************
+//        materia = new Materia(25, "Progrmacion AI", 2024, true);
+//        mat.guardarMateria(materia);// Agregar nuevo alumno a Universisadg8
+////*****************************************************************
 
-        materia.setNombre("Geografia con AI");
-        materia.setAnio(2024);
-        materia.setEstado(true);
-        materia.setIdMateria(1);
-        mat.modificarMateria(materia);
-//     
-//*****************************************************************
-//                  ELIMINAR  MATERIA
-//*****************************************************************
-        mat.eliminarMateria(1);
-//******************************************************************* 
-//                  LISTAMOS TODAS LAS MATERIAS    
+
+////                  MODIFICAR MATERIA
 ////*****************************************************************
-        System.out.println("La lista de Materias es: ");
-        System.out.println(mat.listarMaterias());
-////
-/////****************************************************************
-//                     BUSCAR MATERIA POR id
+//
+//        materia.setNombre("Geografia con AI");
+//        materia.setAnio(2024);
+//        materia.setEstado(true);
+//        materia.setIdMateria(1);
+//        mat.modificarMateria(materia);
+////     
 ////*****************************************************************
-//        
-        System.out.println(mat.buscarMateria(4));
+
+////                  ELIMINAR  MATERIA
+////*****************************************************************
+//        mat.eliminarMateria(1);
+////******************************************************************* 
+
+
+////                  LISTAMOS TODAS LAS MATERIAS    
+//////*****************************************************************
+//        System.out.println("La lista de Materias es: ");
+//        System.out.println(mat.listarMaterias());
+//////
+///////****************************************************************
+
+
+////                     BUSCAR MATERIA POR id
+//////*****************************************************************
+////        
+//        System.out.println(mat.buscarMateria(4));
 ////  
 /////****************************************************************
+
+
 //                     CREAR INSCRIPCION 
 ////*****************************************************************
-        idata.guardarInscripcion(i);
+//        i = new Inscripcion(11, 2, 3); //alu,mat,nota
+//i.setIdAlumno(8);
+//i.setIdMateria(6);
+//i.setNota(9);
+//idata.guardarInscripcion(i);
 /////****************************************************************
+
 //                     ACTUALIZAR NOTA INSCRIPCION 
 ////*****************************************************************
-        idata.actualizarNota(1, 1, 10);
-/////****************************************************************
-//                     BORRAR INSCRIPCION 
-////*****************************************************************
-        idata.borrarInscripcionMateriaAlumno(1, 2);
-/////****************************************************************
-//                     LISTAR INSCRIPCIONES
-////*****************************************************************
-        System.out.println(idata.obtenerInscripciones());
-/////****************************************************************
-//                     LISTAR INSCRIPCIONES POR ALUMNO
-////*****************************************************************
-        System.out.println(idata.obtenerInscripcionesPorAlumno(1));
-/////****************************************************************
-//                     LISTAR MATERIAS CURSADAS POR ALUMNO
-////*****************************************************************
-        System.out.println(idata.obtenerMateriasCursadas(1));
-/////****************************************************************
-//                     LISTAR MATERIAS NO CURSADAS POR ALUMNO
-////*****************************************************************
-        System.out.println(idata.obtenerMateriasNoCursadas(1));
-/////****************************************************************
-//                     LISTAR ALUMNO POR MATERIA
-////*****************************************************************
-        System.out.println(idata.obtenerAlumnoPorMateria(9));
+i.setIdAlumno(8);
+i.setIdMateria(1);
+i.setNota(4);
+idata.actualizarNota(i);
+    
+///////****************************************************************
+
+////                     BORRAR INSCRIPCION 
+//////*****************************************************************
+
+
+//        idata.borrarInscripcionMateriaAlumno(1, 2);
+///////****************************************************************
+
+
+////                     LISTAR INSCRIPCIONES
+//////*****************************************************************
+//        System.out.println(idata.obtenerInscripciones());
+///////****************************************************************
+
+
+////                     LISTAR INSCRIPCIONES POR ALUMNO
+//////*****************************************************************
+//        System.out.println(idata.obtenerInscripcionesPorAlumno(1));
+///////****************************************************************
+
+
+////                     LISTAR MATERIAS CURSADAS POR ALUMNO
+//////*****************************************************************
+//        System.out.println(idata.obtenerMateriasCursadas(1));
+///////****************************************************************
+
+
+////                     LISTAR MATERIAS NO CURSADAS POR ALUMNO
+//////*****************************************************************
+//        System.out.println(idata.obtenerMateriasNoCursadas(1));
+///////****************************************************************
+
+
+////                     LISTAR ALUMNO POR MATERIA
+//////*****************************************************************
+//        System.out.println(idata.obtenerAlumnoPorMateria(9));
     }
 }

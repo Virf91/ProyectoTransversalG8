@@ -14,24 +14,30 @@ import java.util.List;
 public class Inscripcion {
 
     private int idInscripto;
-    private int nota;
+    private double nota;
     private int idAlumno;
     private int idMateria;
 
-    public Inscripcion(int idInscripto, int nota, int idAlumno, int idMateria) {
+    public Inscripcion(int idInscripto, double nota, int idAlumno, int idMateria) {
         this.idInscripto = idInscripto;
         this.nota = nota;
         this.idAlumno = idAlumno;
         this.idMateria = idMateria;
     }
 
-    public Inscripcion(int nota, int idAlumno, int idMateria) {
+    public Inscripcion(int idAlumno, int idMateria, double nota) {
         this.nota = nota;
         this.idAlumno = idAlumno;
         this.idMateria = idMateria;
     }
 
     public Inscripcion() {
+    }
+
+    public Inscripcion(double nota, int idAlumno, int idMateria) {
+        this.nota = nota;
+        this.idAlumno = idAlumno;
+        this.idMateria = idMateria;
     }
 
     public int getIdInscripto() {
@@ -42,11 +48,11 @@ public class Inscripcion {
         this.idInscripto = idInscripto;
     }
 
-    public int getNota() {
+    public double getNota() {
         return nota;
     }
 
-    public void setNota(int nota) {
+    public void setNota(double nota) {
         this.nota = nota;
     }
 
