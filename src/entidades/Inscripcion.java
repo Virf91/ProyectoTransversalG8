@@ -34,11 +34,11 @@ public class Inscripcion {
     public Inscripcion() {
     }
 
-    public Inscripcion(double nota, int idAlumno, int idMateria) {
-        this.nota = nota;
-        this.idAlumno = idAlumno;
-        this.idMateria = idMateria;
-    }
+//    public Inscripcion(double nota, int idAlumno, int idMateria) {
+//        this.nota = nota;
+//        this.idAlumno = idAlumno;
+//        this.idMateria = idMateria;
+//    }
 
     public int getIdInscripto() {
         return idInscripto;
@@ -72,4 +72,11 @@ public class Inscripcion {
         this.idMateria = idMateria;
     }
 
+    @Override
+    public String toString() {
+        return "Inscripcion{" + "idInscripto=" + idInscripto + ", nota=" + nota + ", idAlumno=" + idAlumno + ", idMateria=" + idMateria + '}';
+    }
+
+    
+    
 }

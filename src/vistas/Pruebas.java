@@ -130,27 +130,24 @@ public class Pruebas {
 
 //                     CREAR INSCRIPCION 
 ////*****************************************************************
-//        i = new Inscripcion(11, 2, 3); //alu,mat,nota
-//i.setIdAlumno(8);
-//i.setIdMateria(6);
-//i.setNota(9);
+//i = new Inscripcion(11, 2, 3); //alu,mat,nota
 //idata.guardarInscripcion(i);
 /////****************************************************************
 
 //                     ACTUALIZAR NOTA INSCRIPCION 
 ////*****************************************************************
-i.setIdAlumno(8);
-i.setIdMateria(1);
-i.setNota(4);
-idata.actualizarNota(i);
+//i.setIdAlumno(11);
+//i.setIdMateria(2);
+//i.setNota(1);
+//idata.actualizarNota(i);
     
 ///////****************************************************************
-
+////
 ////                     BORRAR INSCRIPCION 
 //////*****************************************************************
 
-
-//        idata.borrarInscripcionMateriaAlumno(1, 2);
+//
+//        idata.borrarInscripcionMateriaAlumno(8, 1);
 ///////****************************************************************
 
 
@@ -162,24 +159,24 @@ idata.actualizarNota(i);
 
 ////                     LISTAR INSCRIPCIONES POR ALUMNO
 //////*****************************************************************
-//        System.out.println(idata.obtenerInscripcionesPorAlumno(1));
+//        System.out.println(idata.obtenerInscripcionesPorAlumno(28)); // contemplar que decir cuando no hay datos
 ///////****************************************************************
 
 
 ////                     LISTAR MATERIAS CURSADAS POR ALUMNO
 //////*****************************************************************
-//        System.out.println(idata.obtenerMateriasCursadas(1));
+//        System.out.println(idata.obtenerMateriasCursadas(11));
 ///////****************************************************************
 
 
 ////                     LISTAR MATERIAS NO CURSADAS POR ALUMNO
 //////*****************************************************************
-//        System.out.println(idata.obtenerMateriasNoCursadas(1));
+//        System.out.println(idata.obtenerMateriasNoCursadas(11));
 ///////****************************************************************
 
 
 ////                     LISTAR ALUMNO POR MATERIA
 //////*****************************************************************
-//        System.out.println(idata.obtenerAlumnoPorMateria(9));
+//        System.out.println(idata.obtenerAlumnoPorMateria(4)); // contemplar que decir cuando no hay datos
     }
 }

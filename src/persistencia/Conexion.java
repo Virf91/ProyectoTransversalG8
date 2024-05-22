@@ -1,7 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+// */
 package persistencia;
 
 import java.sql.*;
@@ -25,7 +25,7 @@ public class Conexion {
                 //Setup the connection with the DB
                 connection = DriverManager.getConnection(bd, usuario, password);//se establece la conexión a la base de datos invocando al método getConnection()
                 // creando un objeto conexion
-                System.out.println("conexion establecida con exito");
+//                System.out.println("conexion establecida con exito");
 
             } catch (ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Error al conectarse al cargar los drivers");
