@@ -5,6 +5,7 @@
 package vistas;
 
 import entidades.Alumno;
+import entidades.Materia;
 import java.util.HashSet;
 
 /**
@@ -13,6 +14,7 @@ import java.util.HashSet;
  */
 public class Menu extends javax.swing.JFrame {
     private HashSet<Alumno> alumnos = new HashSet<>();
+    private HashSet<Materia> materias = new HashSet<>();
 
     /**
      * Creates new form Menu
@@ -77,6 +79,11 @@ public class Menu extends javax.swing.JFrame {
         jMMateria.setText("Materia");
 
         jMItemMateria.setText("Formulario de Materia");
+        jMItemMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMItemMateriaActionPerformed(evt);
+            }
+        });
         jMMateria.add(jMItemMateria);
 
         jMenuBar1.add(jMMateria);
@@ -126,6 +133,16 @@ public class Menu extends javax.swing.JFrame {
         escritorio.add(gav);//agrego al escritorio la ventana de gestion de alumnos
         escritorio.moveToFront(gav);// traigo al frente la ventana    }    
     }//GEN-LAST:event_jMItemAlumnoActionPerformed
+
+    private void jMItemMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMItemMateriaActionPerformed
+        escritorio.removeAll();// limpia las ventanas
+        escritorio.repaint();// se redibuja el escritorio
+        GestionDeMaterias gmv = new GestionDeMaterias(materias);// se crea una instancia de la ventana, y por defecto es invisble
+        gmv.setVisible(true);// colocamos que sea visible
+        gmv.setLocation(200, 100);
+        escritorio.add(gmv);//agrego al escritorio la ventana de gestion de alumnos
+        escritorio.moveToFront(gmv);// traigo al frente la ventana    }
+    }//GEN-LAST:event_jMItemMateriaActionPerformed
     
 
     /**
