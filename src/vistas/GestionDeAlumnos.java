@@ -4,16 +4,19 @@
  */
 package vistas;
 
+import entidades.Alumno;
+import java.util.HashSet;
+
 /**
  *
  * @author virfe
  */
 public class GestionDeAlumnos extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form GestionDeAlumnos
-     */
-    public GestionDeAlumnos() {
+    private HashSet<Alumno> alumnos;
+
+    public GestionDeAlumnos(HashSet<Alumno> alumnos) {
+        this.alumnos = alumnos;
         initComponents();
     }
 
@@ -26,15 +29,34 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jlTitulo = new javax.swing.JLabel();
+        jbSalir = new javax.swing.JButton();
+
+        jlTitulo.setText("Gestion de Alumnos");
+
+        jbSalir.setText("Salir");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jlTitulo)
+                .addContainerGap(424, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbSalir)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 401, Short.MAX_VALUE)
+                .addComponent(jbSalir)
+                .addContainerGap())
         );
 
         pack();
@@ -42,5 +64,7 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbSalir;
+    private javax.swing.JLabel jlTitulo;
     // End of variables declaration//GEN-END:variables
 }
