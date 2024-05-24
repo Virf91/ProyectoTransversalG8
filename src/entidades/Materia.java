@@ -67,9 +67,7 @@ public class Materia {
 
     @Override
     public String toString() {
-        return "\nMateria:" + "\nidMateria: " + idMateria + " nombre: " + nombre 
-                + "\nanio: " + anio + " estado: " + estado + 
-                "\n------------------------------------------";
+        return nombre+" "+anio;
     }
 
     

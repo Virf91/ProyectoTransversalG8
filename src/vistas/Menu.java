@@ -112,8 +112,18 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMAdmin);
 
         jMConsultas.setText("Consultas");
+        jMConsultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMConsultasActionPerformed(evt);
+            }
+        });
 
         jMItemConsultas.setText("Alumnos por Materia");
+        jMItemConsultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMItemConsultasActionPerformed(evt);
+            }
+        });
         jMConsultas.add(jMItemConsultas);
 
         jMenuBar1.add(jMConsultas);
@@ -141,7 +151,7 @@ public class Menu extends javax.swing.JFrame {
         escritorio.removeAll();// limpia las ventanas
         escritorio.repaint();// se redibuja el escritorio
         GestionDeAlumnos gav = new GestionDeAlumnos(alumnos);// se crea una instancia de la ventana, y por defecto es invisble
-        gav.setVisible(true);// colocamos que sea visible
+        gav.setVisible(true);// colocamos que sea visible  
         gav.setLocation(200, 100);
         escritorio.add(gav);//agrego al escritorio la ventana de gestion de alumnos
         escritorio.moveToFront(gav);// traigo al frente la ventana    }    
@@ -177,6 +187,20 @@ public class Menu extends javax.swing.JFrame {
         escritorio.moveToFront(actNotas);// traigo al frente la ventana    }
 
     }//GEN-LAST:event_jMItemNotasActionPerformed
+
+    private void jMConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMConsultasActionPerformed
+   
+    }//GEN-LAST:event_jMConsultasActionPerformed
+
+    private void jMItemConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMItemConsultasActionPerformed
+                escritorio.removeAll();// limpia las ventanas
+        escritorio.repaint();// se redibuja el escritorio
+        AlumnosPorMateria aluXMat = new AlumnosPorMateria();// se crea una instancia de la ventana, y por defecto es invisble
+        aluXMat.setVisible(true);// colocamos que sea visible
+        aluXMat.setLocation(200, 100);
+        escritorio.add(aluXMat);//agrego al escritorio la ventana de gestion de alumnos
+        escritorio.moveToFront(aluXMat);// traigo al frente la ventana
+    }//GEN-LAST:event_jMItemConsultasActionPerformed
 
     /**
      * @param args the command line arguments
