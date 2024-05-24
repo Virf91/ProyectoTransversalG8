@@ -5,6 +5,7 @@
 package vistas;
 
 import entidades.Alumno;
+import entidades.Inscripcion;
 import entidades.Materia;
 import java.util.HashSet;
 
@@ -13,8 +14,10 @@ import java.util.HashSet;
  * @author virfe
  */
 public class Menu extends javax.swing.JFrame {
+
     private HashSet<Alumno> alumnos = new HashSet<>();
     private HashSet<Materia> materias = new HashSet<>();
+    private HashSet<Inscripcion> inscripciones = new HashSet<>();
 
     /**
      * Creates new form Menu
@@ -91,9 +94,19 @@ public class Menu extends javax.swing.JFrame {
         jMAdmin.setText("Administración");
 
         jMItemInscripciones.setText("Manejo de inscripciones");
+        jMItemInscripciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMItemInscripcionesActionPerformed(evt);
+            }
+        });
         jMAdmin.add(jMItemInscripciones);
 
         jMItemNotas.setText("Manipulación de notas");
+        jMItemNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMItemNotasActionPerformed(evt);
+            }
+        });
         jMAdmin.add(jMItemNotas);
 
         jMenuBar1.add(jMAdmin);
@@ -143,7 +156,27 @@ public class Menu extends javax.swing.JFrame {
         escritorio.add(gmv);//agrego al escritorio la ventana de gestion de alumnos
         escritorio.moveToFront(gmv);// traigo al frente la ventana    }
     }//GEN-LAST:event_jMItemMateriaActionPerformed
-    
+
+    private void jMItemInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMItemInscripcionesActionPerformed
+        escritorio.removeAll();// limpia las ventanas
+        escritorio.repaint();// se redibuja el escritorio
+        Inscripciones ins = new Inscripciones(inscripciones);// se crea una instancia de la ventana, y por defecto es invisble
+        ins.setVisible(true);// colocamos que sea visible
+        ins.setLocation(200, 100);
+        escritorio.add(ins);//agrego al escritorio la ventana de gestion de alumnos
+        escritorio.moveToFront(ins);// traigo al frente la ventana    }
+    }//GEN-LAST:event_jMItemInscripcionesActionPerformed
+
+    private void jMItemNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMItemNotasActionPerformed
+        escritorio.removeAll();// limpia las ventanas
+        escritorio.repaint();// se redibuja el escritorio
+        ActualizacionDeNotas actNotas = new ActualizacionDeNotas();// se crea una instancia de la ventana, y por defecto es invisble
+        actNotas.setVisible(true);// colocamos que sea visible
+        actNotas.setLocation(200, 100);
+        escritorio.add(actNotas);//agrego al escritorio la ventana de gestion de alumnos
+        escritorio.moveToFront(actNotas);// traigo al frente la ventana    }
+
+    }//GEN-LAST:event_jMItemNotasActionPerformed
 
     /**
      * @param args the command line arguments
