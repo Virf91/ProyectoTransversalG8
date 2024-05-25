@@ -82,8 +82,8 @@ public class Pruebas {
 ////                  LISTAMOS TODOS LOS ALUMNOS    
 ////*****************************************************************
 ////       
-//        System.out.println("La lista de alumnos es: ");
-//        System.out.println(alu.listarAlumnos());
+        System.out.println("La lista de alumnos es: ");
+        System.out.println(alu.listarAlumnos());
 //
 //     
 

@@ -32,8 +32,9 @@ public class Inscripciones extends javax.swing.JInternalFrame {
 
     public Inscripciones(HashSet<Inscripcion> inscripciones) {
         initComponents();
-        llenarCombo();
+        armarCabecera();
         this.alumnos = alData.listarAlumnos();
+        llenarCombo();
         this.inscripciones = inscripciones;
         this.inscripcionData = new InscripcionData();
     }
@@ -114,6 +115,11 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         });
 
         jBSalir.setText("Salir");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,7 +152,7 @@ public class Inscripciones extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(140, 140, 140)
                         .addComponent(jLFormulario)))
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,8 +186,11 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void llenarCombo() {
+        if (alumnos.isEmpty()) {
+            System.out.println("lista alumnos vacia ");
+        }
         for (Alumno alumno1 : alumnos) {
-            jCBSeleccionAlumno.addItem(alumno);
+            jCBSeleccionAlumno.addItem(alumno1);
         }
         //jCBSeleccionAlumno.setSelectedIndex(0);
     }
@@ -197,37 +206,33 @@ public class Inscripciones extends javax.swing.JInternalFrame {
     private void jRBMateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBMateriasInscriptasActionPerformed
 
         Alumno al = (Alumno) jCBSeleccionAlumno.getSelectedItem();
-        List<Materia> materias = inscripcionData.obtenerMateriasCursadas(al.getIdAlumno());
-        List<Inscripcion> inscrip = inscripcionData.obtenerInscripcionesPorAlumno(al.getIdAlumno());
+        List<Materia> materiasCursadas = inscripcionData.obtenerMateriasCursadas(al.getIdAlumno());
+        modelo.setRowCount(0);
 
-        for (Materia mat : materias) {
-            for (Inscripcion ins : inscrip) {
-                if (ins.getIdMateria() == mat.getIdMateria()) {
-                    Vector renglon = new Vector<>();
-                    renglon.add(mat.getIdMateria());
-                    renglon.add(mat.getNombre());
-                    renglon.add(mat.getAnio());
-                    modelo.addRow(renglon);
-                }
-            }
+        for (Materia mat : materiasCursadas) {
+            System.out.println(mat.getNombre());
+
+            Vector renglon = new Vector<>();
+            renglon.add(mat.getIdMateria());
+            renglon.add(mat.getNombre());
+            renglon.add(mat.getAnio());
+            modelo.addRow(renglon);
+
         }
+        modelo.fireTableDataChanged();
         jTInscripciones.setModel(modelo);
     }//GEN-LAST:event_jRBMateriasInscriptasActionPerformed
 
     private void jRBMateriasNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBMateriasNoInscriptasActionPerformed
         Alumno al = (Alumno) jCBSeleccionAlumno.getSelectedItem();
-        List<Materia> materias = inscripcionData.obtenerMateriasNoCursadas(al.getIdAlumno());
-        List<Inscripcion> inscrip = inscripcionData.obtenerInscripcionesPorAlumno(al.getIdAlumno());
-        for (Materia mat : materias) {
-            for (Inscripcion ins : inscrip) {
+        List<Materia> materiasNoCursadas = inscripcionData.obtenerMateriasNoCursadas(al.getIdAlumno());
+        for (Materia mat : materiasNoCursadas) {
 
-                Vector renglon = new Vector<>();
-                renglon.add(mat.getIdMateria());
-                renglon.add(mat.getNombre());
-                renglon.add(mat.getAnio());
-                modelo.addRow(renglon);
-
-            }
+            Vector renglon = new Vector<>();
+            renglon.add(mat.getIdMateria());
+            renglon.add(mat.getNombre());
+            renglon.add(mat.getAnio());
+            modelo.addRow(renglon);
         }
         jTInscripciones.setModel(modelo);
     }//GEN-LAST:event_jRBMateriasNoInscriptasActionPerformed
@@ -255,6 +260,15 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         inscripcionData.borrarInscripcionMateriaAlumno(al.getIdAlumno(), obtenerIdMateriaSeleccionada());
     }//GEN-LAST:event_jBAnularInscripcionActionPerformed
 
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jBSalirActionPerformed
+    private void armarCabecera() {
+        modelo.addColumn("Id");
+        modelo.addColumn("Materia");
+        modelo.addColumn("Año");
+        jTInscripciones.setModel(modelo);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAnularInscripcion;
