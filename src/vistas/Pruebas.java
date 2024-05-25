@@ -42,7 +42,7 @@ public class Pruebas {
 ////                      CARGAR/GUARDAR ALUMNO 
 //////***************************************************************
 //        LocalDate fecha = LocalDate.now();
-//        Alumno nuevo = new Alumno(31, 1249852, "Alberto", "Olmedo", fecha, true);
+//        Alumno nuevo = new Alumno(31, 2249852, "Albert", "fritz", fecha, true);
 //        alu.guardarAlumno(nuevo);// Agregar nuevo alumno a Universisadg8
 ////*****************************************************************
 
@@ -153,7 +153,7 @@ public class Pruebas {
 
 ////                     LISTAR INSCRIPCIONES
 //////*****************************************************************
-//        System.out.println(idata.obtenerInscripciones());
+//      System.out.println(idata.obtenerInscripciones());
 ///////****************************************************************
 
 
