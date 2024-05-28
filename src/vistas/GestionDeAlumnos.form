@@ -11,6 +11,8 @@
         <Property name="text" type="java.lang.String" value="jCheckBox1"/>
       </Properties>
     </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="maximizable" type="boolean" value="true"/>
@@ -46,11 +48,6 @@
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jlEstado" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                              <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <Component id="jlFechaNacimiento" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jDFechNac" min="-2" max="-2" attributes="0"/>
@@ -60,14 +57,16 @@
                                   <Component id="jlDocumento" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jlApellido" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jlNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jlEstado" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField2" min="-2" pref="171" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" min="-2" pref="171" max="-2" attributes="0"/>
+                                  <Component id="jRBEstado" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTApellido" min="-2" pref="171" max="-2" attributes="0"/>
+                                  <Component id="jTNombre" min="-2" pref="171" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jTextField1" min="-2" pref="171" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jTDni" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                       <Component id="jbBuscar" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -85,7 +84,7 @@
                       <Component id="jbSalir" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -95,32 +94,34 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlDocumento" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jlDocumento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTDni" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jlApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jlNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jlEstado" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jRBEstado" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlApellido" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlEstado" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jlFechaNacimiento" min="-2" max="-2" attributes="0"/>
                   <Component id="jDFechNac" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jbNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -135,6 +136,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Alumno"/>
       </Properties>
     </Component>
@@ -163,41 +167,56 @@
         <Property name="text" type="java.lang.String" value="Fecha de Nacimiento"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="jTDni">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="jTApellido">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="jTNombre">
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Estado"/>
-      </Properties>
+    <Component class="javax.swing.JRadioButton" name="jRBEstado">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRBEstadoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbBuscar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBuscarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbNuevo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nuevo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbNuevoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbEliminar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEliminarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbGuardar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbGuardarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbSalir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="jDFechNac">
     </Component>
