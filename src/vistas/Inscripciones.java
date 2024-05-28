@@ -17,10 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import persistencia.AlumnoData;
 import persistencia.InscripcionData;
 
-/**
- *
- * @author carba
- */
+
 public class Inscripciones extends javax.swing.JInternalFrame {
 
     private Alumno alumno;
@@ -86,12 +83,22 @@ public class Inscripciones extends javax.swing.JInternalFrame {
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
+                {null, null, null},
                 {null, null, null}
             },
             new String [] {
                 "ID Inscripcion", "Nombre", "Año"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTInscripciones.getTableHeader().setReorderingAllowed(false);
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jBInscribir, org.jdesktop.beansbinding.ELProperty.create("false"), jTInscripciones, org.jdesktop.beansbinding.BeanProperty.create("columnSelectionAllowed"));
         bindingGroup.addBinding(binding);
@@ -99,6 +106,11 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         bindingGroup.addBinding(binding);
 
         jScrollPane1.setViewportView(jTInscripciones);
+        if (jTInscripciones.getColumnModel().getColumnCount() > 0) {
+            jTInscripciones.getColumnModel().getColumn(0).setResizable(false);
+            jTInscripciones.getColumnModel().getColumn(1).setResizable(false);
+            jTInscripciones.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jBInscribir.setText("Inscribir");
         jBInscribir.addActionListener(new java.awt.event.ActionListener() {

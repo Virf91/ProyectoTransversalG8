@@ -82,40 +82,40 @@ public class Pruebas {
 ////                  LISTAMOS TODOS LOS ALUMNOS    
 ////*****************************************************************
 ////       
-        System.out.println("La lista de alumnos es: ");
-        System.out.println(alu.listarAlumnos());
+//        System.out.println("La lista de alumnos es: ");
+//        System.out.println(alu.listarAlumnos());
 //
 //     
 
 //*******************************************************************
 //                  AGREGAR MATERIA
 ////*****************************************************************
-//        materia = new Materia(25, "Progrmacion AI", 2024, true);
-//        mat.guardarMateria(materia);// Agregar nuevo alumno a Universisadg8
+        materia = new Materia(25, "Progrmacion AI", 2024, true);
+        mat.guardarMateria(materia);// Agregar nuevo alumno a Universisadg8
 ////*****************************************************************
 
 
 ////                  MODIFICAR MATERIA
 ////*****************************************************************
 //
-//        materia.setNombre("Geografia con AI");
-//        materia.setAnio(2024);
-//        materia.setEstado(true);
-//        materia.setIdMateria(1);
-//        mat.modificarMateria(materia);
+        materia.setNombre("Geografia con AI");
+        materia.setAnio(2024);
+        materia.setEstado(true);
+        materia.setIdMateria(1);
+        mat.modificarMateria(materia);
 ////     
 ////*****************************************************************
 
 ////                  ELIMINAR  MATERIA
 ////*****************************************************************
-//        mat.eliminarMateria(1);
+        mat.eliminarMateria(1);
 ////******************************************************************* 
 
 
 ////                  LISTAMOS TODAS LAS MATERIAS    
 //////*****************************************************************
-//        System.out.println("La lista de Materias es: ");
-//        System.out.println(mat.listarMaterias());
+        System.out.println("La lista de Materias es: ");
+        System.out.println(mat.listarMaterias());
 //////
 ///////****************************************************************
 
@@ -123,23 +123,23 @@ public class Pruebas {
 ////                     BUSCAR MATERIA POR id
 //////*****************************************************************
 ////        
-//        System.out.println(mat.buscarMateria(4));
+        System.out.println(mat.buscarMateria(4));
 ////  
 /////****************************************************************
 
 
 //                     CREAR INSCRIPCION 
 ////*****************************************************************
-//i = new Inscripcion(11, 2, 3); //alu,mat,nota
-//idata.guardarInscripcion(i);
+i = new Inscripcion(11, 2, 3); //alu,mat,nota
+idata.guardarInscripcion(i);
 /////****************************************************************
 
 //                     ACTUALIZAR NOTA INSCRIPCION 
 ////*****************************************************************
-//i.setIdAlumno(11);
-//i.setIdMateria(2);
-//i.setNota(1);
-//idata.actualizarNota(i);
+i.setIdAlumno(11);
+i.setIdMateria(2);
+i.setNota(1);
+idata.actualizarNota(i);
     
 ///////****************************************************************
 ////
@@ -147,36 +147,36 @@ public class Pruebas {
 //////*****************************************************************
 
 //
-//        idata.borrarInscripcionMateriaAlumno(8, 1);
+        idata.borrarInscripcionMateriaAlumno(8, 1);
 ///////****************************************************************
 
 
 ////                     LISTAR INSCRIPCIONES
 //////*****************************************************************
-//      System.out.println(idata.obtenerInscripciones());
+      System.out.println(idata.obtenerInscripciones());
 ///////****************************************************************
 
 
 ////                     LISTAR INSCRIPCIONES POR ALUMNO
 //////*****************************************************************
-//        System.out.println(idata.obtenerInscripcionesPorAlumno(28)); // contemplar que decir cuando no hay datos
+        System.out.println(idata.obtenerInscripcionesPorAlumno(28)); // contemplar que decir cuando no hay datos
 ///////****************************************************************
 
 
 ////                     LISTAR MATERIAS CURSADAS POR ALUMNO
 //////*****************************************************************
-//        System.out.println(idata.obtenerMateriasCursadas(11));
+        System.out.println(idata.obtenerMateriasCursadas(11));
 ///////****************************************************************
 
 
 ////                     LISTAR MATERIAS NO CURSADAS POR ALUMNO
 //////*****************************************************************
-//        System.out.println(idata.obtenerMateriasNoCursadas(11));
+        System.out.println(idata.obtenerMateriasNoCursadas(11));
 ///////****************************************************************
 
 
 ////                     LISTAR ALUMNO POR MATERIA
 //////*****************************************************************
-//        System.out.println(idata.obtenerAlumnoPorMateria(4)); // contemplar que decir cuando no hay datos
+        System.out.println(idata.obtenerAlumnoPorMateria(4)); // contemplar que decir cuando no hay datos
     }
 }

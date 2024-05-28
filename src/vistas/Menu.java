@@ -185,7 +185,6 @@ public class Menu extends javax.swing.JFrame {
         actNotas.setLocation(200, 100);
         escritorio.add(actNotas);//agrego al escritorio la ventana de gestion de alumnos
         escritorio.moveToFront(actNotas);// traigo al frente la ventana    }
-
     }//GEN-LAST:event_jMItemNotasActionPerformed
 
     private void jMConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMConsultasActionPerformed
