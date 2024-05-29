@@ -8,17 +8,21 @@ package vistas;
 import entidades.Alumno;
 import entidades.Materia;
 import java.util.HashSet;
+import javax.swing.JOptionPane;
+import persistencia.MateriaData;
 
 /**
  *
  * @author carba
  */
 public class GestionDeMaterias extends javax.swing.JInternalFrame {
-private HashSet<Materia> materias;
-
+    private MateriaData materiaData = new MateriaData();
+//    private HashSet<Materia> materias;
+    
     public GestionDeMaterias(HashSet<Materia> materias) {
-        this.materias = materias;
         initComponents();
+//        this.materias = materias;
+        configurarBotones();
     }
 
     /**
@@ -40,8 +44,8 @@ private HashSet<Materia> materias;
         jtNombre = new javax.swing.JTextField();
         jtAnio = new javax.swing.JTextField();
         jbBuscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jbNuevo = new javax.swing.JButton();
+        jbEliminar = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
 
@@ -60,14 +64,39 @@ private HashSet<Materia> materias;
         jlEstado.setText("Estado");
 
         jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Nuevo");
+        jbNuevo.setText("Nuevo");
+        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNuevoActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Eliminar");
+        jbEliminar.setText("Eliminar");
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarActionPerformed(evt);
+            }
+        });
 
         jbGuardar.setText("Guardar");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,9 +132,9 @@ private HashSet<Materia> materias;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jbBuscar))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(jbNuevo)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton3)
+                                .addComponent(jbEliminar)
                                 .addGap(18, 18, 18)
                                 .addComponent(jbGuardar)))
                         .addGap(18, 18, 18)
@@ -135,8 +164,8 @@ private HashSet<Materia> materias;
                     .addComponent(jrbEstado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
+                    .addComponent(jbNuevo)
+                    .addComponent(jbEliminar)
                     .addComponent(jbGuardar)
                     .addComponent(jbSalir))
                 .addGap(20, 20, 20))
@@ -144,14 +173,136 @@ private HashSet<Materia> materias;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void configurarBotones() {
+
+        jbEliminar.setEnabled(false);
+        jbNuevo.setEnabled(false);
+    }
+
+    private void limpiarCampos() {
+        jtCodigo.setText("");
+        jtNombre.setText("");
+        jtAnio.setText("");
+        jrbEstado.setSelected(false);
+
+    }
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+      String codigo = jtCodigo.getText();
+
+    // Validar que el código ingresado sea un número
+    if (!codigo.matches("\\d+")) {
+        JOptionPane.showMessageDialog(this, "El código debe ser un número.");
+        return;
+    }
+
+    int id = Integer.parseInt(codigo);
+    
+   
+
+    // Buscar la materia por ID
+    Materia materia = materiaData.buscarMateria(id);
+
+    // Verificar si la materia fue encontrada
+    if (materia != null) {
+        jtNombre.setText(materia.getNombre());
+        jtAnio.setText(String.valueOf(materia.getAnio()));
+        jrbEstado.setSelected(materia.isEstado());
+        
+        // Habilitar el botón Eliminar al encontrar la materia
+        jbEliminar.setEnabled(true);
+        jbNuevo.setEnabled(true);
+    } else {
+        JOptionPane.showMessageDialog(this, "Materia no encontrada.");
+        limpiarCampos();
+        // Deseleccionar el radio button
+        jrbEstado.setSelected(false);
+        
+        
+    }
+    
+    }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+           // Expresiones regulares para validar que los campos no estén vacíos
+   // Expresiones regulares para validar que los campos no estén vacíos
+    String nombre = jtNombre.getText();
+    String anioStr = jtAnio.getText();
+    String codigoStr = jtCodigo.getText();
+    
+    // Verificar que los campos no estén vacíos
+    if (nombre.isEmpty() || anioStr.isEmpty() || codigoStr.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+        return;
+    }
+    
+    // Validar formato del año con expresión regular
+    if (!anioStr.matches("\\d{4}")) {
+        JOptionPane.showMessageDialog(null, "El año debe contener 4 dígitos");
+        return;
+    }
+    
+    // Validar que el código sea un entero
+    if (!codigoStr.matches("\\d+")) {
+        JOptionPane.showMessageDialog(null, "El código debe ser un número entero");
+        return;
+    }
+    
+    // Extraer datos de los campos
+    int anio = Integer.parseInt(anioStr);
+    int codigo = Integer.parseInt(codigoStr);
+    boolean estado = jrbEstado.isSelected();
+    
+    // Verificar si ya existe una materia con ese ID
+    
+    Materia materiaExistente = materiaData.buscarMateria(codigo);
+    
+    if (materiaExistente != null) {
+        JOptionPane.showMessageDialog(null, "No es posible guardar la materia porque el ID ya existe");
+    } else {
+        // Crear un objeto de la clase Materia con los datos obtenidos
+        Materia materia = new Materia(codigo, nombre, anio, estado);
+
+        // Llamar al método guardarMateria de la clase MateriaData
+        materiaData.guardarMateria(materia);
+
+        // Mostrar un mensaje de éxito o realizar otras acciones necesarias
+        JOptionPane.showMessageDialog(null, "Materia guardada exitosamente");
+    }
+
+
+    }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        // Obtener el ID de la materia a eliminar
+        int id = Integer.parseInt(jtCodigo.getText());
+
+
+        // Llamar al método eliminarMateria con el ID de la materia a eliminar
+        materiaData.eliminarMateria(id);
+
+        // Limpiar los campos de texto después de eliminar la materia
+        limpiarCampos(); // Deseleccionar el radio button
+
+        // Mostrar un mensaje de éxito o realizar otras acciones necesarias
+        JOptionPane.showMessageDialog(this, "Materia eliminada exitosamente.");
+    }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
+       limpiarCampos();
+       configurarBotones();
+    }//GEN-LAST:event_jbNuevoActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+          dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton jbBuscar;
+    private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
     private javax.swing.JLabel jlAnio;
     private javax.swing.JLabel jlCodigo;
