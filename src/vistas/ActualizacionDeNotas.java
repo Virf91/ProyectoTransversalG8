@@ -16,10 +16,14 @@ public class ActualizacionDeNotas extends javax.swing.JInternalFrame {
     private Alumno alumno;
     private List<Alumno> alumnos = new ArrayList<>();
     private InscripcionData inscripcionData = new InscripcionData();
-    private DefaultTableModel modelo = new DefaultTableModel();
     private AlumnoData alData = new AlumnoData();
     private List<Inscripcion> inscripciones = new ArrayList<>();
-    
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int i, int i1) {
+            return i1==2;
+        }        
+    };
     public ActualizacionDeNotas() {
         initComponents();
         armarCabecera();
@@ -157,7 +161,7 @@ public class ActualizacionDeNotas extends javax.swing.JInternalFrame {
         for (Alumno alumno1 : alumnos) {
             jCBSeleccioneAlumno.addItem(alumno1);
         }
-        jCBSeleccioneAlumno.setSelectedIndex(0);
+        //jCBSeleccioneAlumno.setSelectedIndex(0);
     }
 
     private Double obtenerNotaInscripcionSeleccionada() {

@@ -24,8 +24,13 @@ public class Inscripciones extends javax.swing.JInternalFrame {
     private List<Alumno> alumnos = new ArrayList<>();
     private InscripcionData inscripcionData;
     private HashSet<Inscripcion> inscripciones;
-    private DefaultTableModel modelo = new DefaultTableModel();
     private AlumnoData alData = new AlumnoData();
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int i, int i1) {
+            return false;
+        }        
+    };
 
     public Inscripciones(HashSet<Inscripcion> inscripciones) {
         initComponents();
@@ -61,6 +66,11 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         jLabel1.setText("Seleccione un alumno");
 
         jCBSeleccionAlumno.setName(""); // NOI18N
+        jCBSeleccionAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBSeleccionAlumnoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Listado de Materias");
 
@@ -204,6 +214,7 @@ public class Inscripciones extends javax.swing.JInternalFrame {
         for (Alumno alumno1 : alumnos) {
             jCBSeleccionAlumno.addItem(alumno1);
         }
+        
         //jCBSeleccionAlumno.setSelectedIndex(0);
     }
 
@@ -216,8 +227,10 @@ public class Inscripciones extends javax.swing.JInternalFrame {
     }
 
     private void jRBMateriasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBMateriasInscriptasActionPerformed
-
+        jTInscripciones.selectAll();
+        jTInscripciones.clearSelection();
         Alumno al = (Alumno) jCBSeleccionAlumno.getSelectedItem();
+        
         List<Materia> materiasCursadas = inscripcionData.obtenerMateriasCursadas(al.getIdAlumno());
         modelo.setRowCount(0);
 
@@ -236,6 +249,8 @@ public class Inscripciones extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRBMateriasInscriptasActionPerformed
 
     private void jRBMateriasNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBMateriasNoInscriptasActionPerformed
+        jTInscripciones.selectAll();
+        jTInscripciones.clearSelection();
         Alumno al = (Alumno) jCBSeleccionAlumno.getSelectedItem();
         List<Materia> materiasNoCursadas = inscripcionData.obtenerMateriasNoCursadas(al.getIdAlumno());
         for (Materia mat : materiasNoCursadas) {
@@ -275,6 +290,11 @@ public class Inscripciones extends javax.swing.JInternalFrame {
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void jCBSeleccionAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBSeleccionAlumnoActionPerformed
+       jRBMateriasInscriptas.setSelected(false);
+       jRBMateriasNoInscriptas.setSelected(false);
+    }//GEN-LAST:event_jCBSeleccionAlumnoActionPerformed
     private void armarCabecera() {
         modelo.addColumn("Id");
         modelo.addColumn("Materia");

@@ -7,11 +7,19 @@ package vistas;
 import entidades.Alumno;
 import entidades.Materia;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import persistencia.InscripcionData;
 import persistencia.MateriaData;
 
 public class AlumnosPorMateria extends javax.swing.JInternalFrame {
+
+    private DefaultTableModel model = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int i, int i1) {
+            return false;
+        }
+    };
 
     public AlumnosPorMateria() {
         initComponents();
@@ -105,30 +113,35 @@ public class AlumnosPorMateria extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCbListadoMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbListadoMateriasActionPerformed
- Materia selectedMateria = (Materia) jCbListadoMaterias.getSelectedItem();
-    if (selectedMateria != null) {
-        InscripcionData inscripcionData = new InscripcionData();
-        List<Alumno> alumnos = inscripcionData.obtenerAlumnoPorMateria(selectedMateria.getIdMateria());
-        
-        // Definir las columnas de la tabla
-        String[] columnNames = {"ID", "DNI", "Apellido", "Nombre"};
-        
-        // Crear el modelo de la tabla
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-        
-        // Añadir los alumnos al modelo de la tabla
-        for (Alumno alumno : alumnos) {
-            Object[] row = new Object[4];
-            row[0] = alumno.getIdAlumno();
-            row[1] = alumno.getDni();
-            row[2] = alumno.getApellido();
-            row[3] = alumno.getNombre();
-            model.addRow(row);
+        Materia selectedMateria = (Materia) jCbListadoMaterias.getSelectedItem();
+
+        if (selectedMateria != null) {
+            InscripcionData inscripcionData = new InscripcionData();
+            List<Alumno> alumnos = inscripcionData.obtenerAlumnoPorMateria(selectedMateria.getIdMateria());
+
+            // Definir las columnas de la tabla
+            String[] columnNames = {"ID", "DNI", "Apellido", "Nombre"};
+            DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            // Añadir los alumnos al modelo de la tabla
+            for (Alumno alumno : alumnos) {
+
+                Vector renglon = new Vector<>();
+                renglon.add(alumno.getIdAlumno());
+                renglon.add(alumno.getDni());
+                renglon.add(alumno.getApellido());
+                renglon.add(alumno.getNombre());
+                model.addRow(renglon);
+
+            }
+
+            // Asignar el modelo al JTable
+            jTableAPorMat.setModel(model);
         }
-        
-        // Asignar el modelo al JTable
-        jTableAPorMat.setModel(model);
-    }
 
     }//GEN-LAST:event_jCbListadoMateriasActionPerformed
 
@@ -136,7 +149,7 @@ public class AlumnosPorMateria extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-private void llenarCombo(){
+    private void llenarCombo() {
         MateriaData materiaData = new MateriaData();
         List<Materia> materias = materiaData.listarMaterias();
         for (Materia materia : materias) {
@@ -144,7 +157,7 @@ private void llenarCombo(){
         }
 
         jCbListadoMaterias.setSelectedItem(0);
-}
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
