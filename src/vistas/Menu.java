@@ -112,11 +112,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMAdmin);
 
         jMConsultas.setText("Consultas");
-        jMConsultas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMConsultasActionPerformed(evt);
-            }
-        });
 
         jMItemConsultas.setText("Alumnos por Materia");
         jMItemConsultas.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +124,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMConsultas);
 
         jMSalir.setText("Salir");
+        jMSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMSalirMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMSalir);
 
         setJMenuBar(jMenuBar1);
@@ -187,12 +187,8 @@ public class Menu extends javax.swing.JFrame {
         escritorio.moveToFront(actNotas);// traigo al frente la ventana    }
     }//GEN-LAST:event_jMItemNotasActionPerformed
 
-    private void jMConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMConsultasActionPerformed
-   
-    }//GEN-LAST:event_jMConsultasActionPerformed
-
     private void jMItemConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMItemConsultasActionPerformed
-                escritorio.removeAll();// limpia las ventanas
+        escritorio.removeAll();// limpia las ventanas
         escritorio.repaint();// se redibuja el escritorio
         AlumnosPorMateria aluXMat = new AlumnosPorMateria();// se crea una instancia de la ventana, y por defecto es invisble
         aluXMat.setVisible(true);// colocamos que sea visible
@@ -200,6 +196,9 @@ public class Menu extends javax.swing.JFrame {
         escritorio.add(aluXMat);//agrego al escritorio la ventana de gestion de alumnos
         escritorio.moveToFront(aluXMat);// traigo al frente la ventana
     }//GEN-LAST:event_jMItemConsultasActionPerformed
+
+    private void jMSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMSalirMouseClicked
+        System.exit(0);    }//GEN-LAST:event_jMSalirMouseClicked
 
     /**
      * @param args the command line arguments
