@@ -1,6 +1,5 @@
 
 package vistas;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
@@ -81,7 +80,6 @@ public class ActualizacionDeNotas extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTTablaNotas.setColumnSelectionAllowed(false);
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jBGuardar, org.jdesktop.beansbinding.ELProperty.create("false"), jTTablaNotas, org.jdesktop.beansbinding.BeanProperty.create("columnSelectionAllowed"));
         bindingGroup.addBinding(binding);

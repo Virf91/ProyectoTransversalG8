@@ -318,7 +318,7 @@ private void configurarBotones() {
 
             int dni = Integer.parseInt(dniText);
             boolean estado = alumno.isEstado();
-            Alumno nuevo = new Alumno(dni, nombreText, apellidoText, fecha, estado);
+            Alumno nuevo = new Alumno(dni, apellidoText, nombreText, fecha, estado);
 
             AlumnoData alumnoData = new AlumnoData();
             jbGuardar.setEnabled(true);
